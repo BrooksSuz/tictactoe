@@ -4,10 +4,13 @@ html {
 
 *, *::before, *::after {
   box-sizing: inherit;
+  color: white;
 }
 
 body {
   background-color: black;
+  display: flex;
+  flex-direction: column;
   height: 100vh;
   margin: 0;
 }
