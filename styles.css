@@ -28,6 +28,14 @@ body {
   'cell-7 cell-8 cell-9';
 }
 
+.cells {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 5rem;
+  border: 1px solid white;
+}
+
 .cell-1 { 
   grid-area: cell-1;
 }

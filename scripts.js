@@ -1,7 +1,3 @@
-// CHECK WHICH GIT BRANCH YOU'RE ON 
-
-
-
 const ticTaceToe = (() => {
   const gameBoard = { 
     arr: [
@@ -10,9 +6,15 @@ const ticTaceToe = (() => {
       'X', 'O', 'X'
     ] }; 
 
-    
+  const populateBoard = () => {
+    for (let i = 0; i < gameBoard.arr.length; i++) {
+      let currentCell = document.querySelector(`.cell-${i + 1}`); 
+      currentCell.textContent += gameBoard.arr[i]; 
+      currentCell.classList.add('cells'); 
+    }
+  }
 
-    return {  }; 
+  return { populateBoard }; 
   })(); 
   
 const Player = name => {
@@ -23,4 +25,4 @@ const Player = name => {
 const Brooks = Player('Brooks'); 
 const Jake = Player('Jake'); 
 
-ticTaceToe.createGameBoard(); 
+ticTaceToe.populateBoard(); 
