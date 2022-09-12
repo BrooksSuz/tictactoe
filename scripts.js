@@ -23,16 +23,32 @@ const Player = (name) => {
   const divCells = document.querySelectorAll('div[class^=cell]'); 
 
   const _winGame = () => {
+
     // horizontal wins
-    if (divCells[0].textContent === 
-      (divCells[1].textContent && divCells[2].textContent) && 
-      divCells[0].textContent === 'X') {
-      alert('you win!'); 
+    if (divCells[0].textContent === (divCells[1].textContent && divCells[2].textContent) && divCells[0].textContent === 'X') {
+       alert('You Win!'); 
     } else if (divCells[3].textContent === (divCells[4].textContent && divCells[5].textContent) && divCells[3].textContent === 'X') {
-      alert('you win!'); 
+      alert('You Win!'); 
     } else if (divCells[6].textContent === (divCells[7].textContent && divCells[8].textContent) && divCells[6].textContent === 'X') {
-      alert('you win!'); 
+      alert('You Win!'); 
     }
+
+    //vertical wins
+    if (divCells[0].textContent === (divCells[3].textContent && divCells[6].textContent) && divCells[0].textContent === 'X') {
+      alert('You Win!'); 
+    } else if (divCells[1].textContent === (divCells[4].textContent && divCells[7].textContent) && divCells[1].textContent === 'X') {
+      alert('You Win!'); 
+    } else if (divCells[2].textContent === (divCells[5].textContent && divCells[8].textContent) && divCells[2].textContent === 'X') {
+      alert('You Win!'); 
+    }
+
+    //diagonal wins 
+    if (divCells[0].textContent === (divCells[4].textContent && divCells[8].textContent) && divCells[0].textContent === 'X') {
+      alert('You Win!'); 
+    } else if (divCells[2].textContent === (divCells[4].textContent && divCells[6].textContent) && divCells[2].textContent === 'X') {
+      alert('You Win!'); 
+    }
+
   }
 
   const addMark = () => { 
