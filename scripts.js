@@ -17,12 +17,17 @@
   return { populateBoard }; 
   })(); */
   
-const Player = () => {
-  const name = prompt('Enter your name'); 
-  const mark = prompt("X's or O's?").toUpperCase; 
+const Player = (name, mark, turn) => {
+  return { name, mark, turn }; 
+}
 
+const playerOne = Player('Player 1', 'X', true); 
+const playerTwo = Player('Player 2', 'O', false); 
+
+const gameFlow = (function() {
   const divCells = document.querySelectorAll('div[class^=cell]'); 
 
+  //fix
   const _winGame = () => {
     // horizontal wins
     if (divCells[0].textContent === (divCells[1].textContent && divCells[2].textContent) && divCells[0].textContent === mark) {
@@ -53,23 +58,16 @@ const Player = () => {
   const addMark = () => { 
     for (let i = 0; i < divCells.length; i++) { 
       divCells[i].addEventListener('click', () => {
-        if (divCells[i].textContent === '') {
+        if (divCells[i].textContent === '' && playerOne.turn === true) {
           divCells[i].classList.add('cells'); 
-          divCells[i].textContent += mark; 
+          divCells[i].textContent += playerOne.mark; 
+        } else if (divCells[i].textContent === '' && playerTwo.turn === true) {
+          divCells[i].classList.add('cells'); 
+          divCells[i].textContent += playerTwo.mark; 
         }
         //check if game is won
         _winGame(); 
       });
     }
   }
-
-  return { addMark }; 
-}
-
-document.querySelector('.btn-new-game').addEventListener('click', () => {
-  const gameFlow = (() => {
-    //create players
-    const playerOne = Player(); 
-    const playerTwo = Player(); 
-  })(); 
-}); 
+})(); 
