@@ -1,4 +1,4 @@
-(function() {
+const gameFunctions = (() => {
   const gameBoard = { 
     playerOneArr: [], 
     playerTwoArr: []
@@ -27,12 +27,12 @@ const playerTwo = Player('Player 2', 'O', false);
 
 const gameFlow = (function() {
   const divCells = document.querySelectorAll('div[class^=cell]'); 
-  
+
   const _winGame = () => {
 
   }
 
-  const addMark = () => { 
+  const playGame = () => { 
     for (let i = 0; i < divCells.length; i++) { 
       divCells[i].addEventListener('click', () => {
         if (divCells[i].textContent === '' && playerOne.turn === true) {
@@ -42,24 +42,25 @@ const gameFlow = (function() {
           divCells[i].classList.add('cells'); 
           divCells[i].textContent += playerTwo.mark; 
         }
-        //check if game is won
-        _winGame(); 
 
         if (playerOne.turn === true) {
+          gameFunctions.gameBoard.playerOneArr.push(i); 
           playerOne.turn = false; 
         } else if (playerOne.turn === false) {
           playerOne.turn = true; 
         }
-
+        
         if (playerTwo.turn === true) {
+          gameFunctions.gameBoard.playerTwoArr.push(i); 
           playerTwo.turn = false; 
         } else if (playerTwo.turn === false) {
           playerTwo.turn = true; 
         }
       });
     }
-
   }
-  
-  addMark(); 
+
+  return { playGame }; 
 })(); 
+
+gameFlow.playGame();
