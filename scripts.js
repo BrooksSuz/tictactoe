@@ -1,21 +1,22 @@
-/* const ticTaceToe = (() => {
+(function() {
   const gameBoard = { 
-    arr: [
-      'X', 'O', 'X', 
-      'O', 'O', 'X', 
-      'X', 'O', 'X'
-    ] }; 
+    playerOneArr: [], 
+    playerTwoArr: []
+  }; 
 
-  const populateBoard = () => {
-    for (let i = 0; i < gameBoard.arr.length; i++) {
-      let currentCell = document.querySelector(`.cell-${i + 1}`); 
-      currentCell.textContent += gameBoard.arr[i]; 
-      currentCell.classList.add('cells'); 
-    }
-  }
+  const winCombos = [
+    [0, 1, 2], 
+    [3, 4, 5], 
+    [6, 7, 8], 
+    [0, 3, 6], 
+    [1, 4, 7], 
+    [2, 5, 8], 
+    [0, 4, 8], 
+    [2, 4, 6]
+  ]; 
 
-  return { populateBoard }; 
-  })(); */
+  return { gameBoard, winCombos }; 
+})(); 
   
 const Player = (name, mark, turn) => {
   return { name, mark, turn }; 
@@ -26,33 +27,9 @@ const playerTwo = Player('Player 2', 'O', false);
 
 const gameFlow = (function() {
   const divCells = document.querySelectorAll('div[class^=cell]'); 
-
-  //fix
+  
   const _winGame = () => {
-    // horizontal wins
-    if (divCells[0].textContent === (divCells[1].textContent && divCells[2].textContent) && divCells[0].textContent === mark) {
-      alert(`${name} Wins!`); 
-    } else if (divCells[3].textContent === (divCells[4].textContent && divCells[5].textContent) && divCells[3].textContent === mark) {
-      alert(`${name} Wins!`); 
-    } else if (divCells[6].textContent === (divCells[7].textContent && divCells[8].textContent) && divCells[6].textContent === mark) {
-      alert(`${name} Wins!`); 
-    }
 
-    //vertical wins
-    if (divCells[0].textContent === (divCells[3].textContent && divCells[6].textContent) && divCells[0].textContent === mark) {
-      alert(`${name} Wins!`); 
-    } else if (divCells[1].textContent === (divCells[4].textContent && divCells[7].textContent) && divCells[1].textContent === mark) {
-      alert(`${name} Wins!`); 
-    } else if (divCells[2].textContent === (divCells[5].textContent && divCells[8].textContent) && divCells[2].textContent === mark) {
-      alert(`${name} Wins!`); 
-    }
-
-    //diagonal wins 
-    if (divCells[0].textContent === (divCells[4].textContent && divCells[8].textContent) && divCells[0].textContent === mark) {
-      alert(`${name} Wins!`); 
-    } else if (divCells[2].textContent === (divCells[4].textContent && divCells[6].textContent) && divCells[2].textContent === mark) {
-      alert(`${name} Wins!`); 
-    }
   }
 
   const addMark = () => { 
@@ -67,7 +44,22 @@ const gameFlow = (function() {
         }
         //check if game is won
         _winGame(); 
+
+        if (playerOne.turn === true) {
+          playerOne.turn = false; 
+        } else if (playerOne.turn === false) {
+          playerOne.turn = true; 
+        }
+
+        if (playerTwo.turn === true) {
+          playerTwo.turn = false; 
+        } else if (playerTwo.turn === false) {
+          playerTwo.turn = true; 
+        }
       });
     }
+
   }
+  
+  addMark(); 
 })(); 
