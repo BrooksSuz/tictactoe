@@ -19,7 +19,7 @@
   
 const Player = () => {
   const name = prompt('Enter your name'); 
-  const mark = prompt("X's or O's?"); 
+  const mark = prompt("X's or O's?").toUpperCase; 
 
   const divCells = document.querySelectorAll('div[class^=cell]'); 
 
@@ -55,7 +55,7 @@ const Player = () => {
       divCells[i].addEventListener('click', () => {
         if (divCells[i].textContent === '') {
           divCells[i].classList.add('cells'); 
-          divCells[i].textContent += 'X'; 
+          divCells[i].textContent += mark; 
         }
         //check if game is won
         _winGame(); 
@@ -66,14 +66,10 @@ const Player = () => {
   return { addMark }; 
 }
 
-const btnNewGame = document.querySelector('.btn-new-game'); 
-
-btnNewGame.addEventListener('click', () => {
+document.querySelector('.btn-new-game').addEventListener('click', () => {
   const gameFlow = (() => {
     //create players
     const playerOne = Player(); 
     const playerTwo = Player(); 
-
-
   })(); 
 }); 
