@@ -17,12 +17,22 @@ const ticTaceToe = (() => {
   return { populateBoard }; 
   })(); 
   
-const Player = name => {
+const Player = (name) => {
   const getName = () => name; 
-  return { getName }; 
+
+  const addMark = () => { 
+    const divCells = document.querySelectorAll('div[class^=cell]'); 
+    for (let i = 0; i < divCells.length; i++) { 
+      divCells[i].addEventListener('click', () => {
+        if (divCells[i].textContent === '') {
+          divCells[i].classList.add('cells'); 
+          divCells[i].textContent += 'X'; 
+        }
+      });
+    }
+  }
+
+  return { getName, addMark }; 
 }
 
-const Brooks = Player('Brooks'); 
-const Jake = Player('Jake'); 
-
-ticTaceToe.populateBoard(); 
+const playerOne = Player().addMark();
