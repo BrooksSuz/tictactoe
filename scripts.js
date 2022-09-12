@@ -1,4 +1,4 @@
-const ticTaceToe = (() => {
+/* const ticTaceToe = (() => {
   const gameBoard = { 
     arr: [
       'X', 'O', 'X', 
@@ -15,40 +15,39 @@ const ticTaceToe = (() => {
   }
 
   return { populateBoard }; 
-  })(); 
+  })(); */
   
-const Player = (name) => {
-  const getName = () => name; 
-  
+const Player = () => {
+  const name = prompt('Enter your name'); 
+  const mark = prompt("X's or O's?"); 
+
   const divCells = document.querySelectorAll('div[class^=cell]'); 
 
   const _winGame = () => {
-
     // horizontal wins
-    if (divCells[0].textContent === (divCells[1].textContent && divCells[2].textContent) && divCells[0].textContent === 'X') {
-       alert('You Win!'); 
-    } else if (divCells[3].textContent === (divCells[4].textContent && divCells[5].textContent) && divCells[3].textContent === 'X') {
-      alert('You Win!'); 
-    } else if (divCells[6].textContent === (divCells[7].textContent && divCells[8].textContent) && divCells[6].textContent === 'X') {
-      alert('You Win!'); 
+    if (divCells[0].textContent === (divCells[1].textContent && divCells[2].textContent) && divCells[0].textContent === mark) {
+      alert(`${name} Wins!`); 
+    } else if (divCells[3].textContent === (divCells[4].textContent && divCells[5].textContent) && divCells[3].textContent === mark) {
+      alert(`${name} Wins!`); 
+    } else if (divCells[6].textContent === (divCells[7].textContent && divCells[8].textContent) && divCells[6].textContent === mark) {
+      alert(`${name} Wins!`); 
     }
 
     //vertical wins
-    if (divCells[0].textContent === (divCells[3].textContent && divCells[6].textContent) && divCells[0].textContent === 'X') {
-      alert('You Win!'); 
-    } else if (divCells[1].textContent === (divCells[4].textContent && divCells[7].textContent) && divCells[1].textContent === 'X') {
-      alert('You Win!'); 
-    } else if (divCells[2].textContent === (divCells[5].textContent && divCells[8].textContent) && divCells[2].textContent === 'X') {
-      alert('You Win!'); 
+    if (divCells[0].textContent === (divCells[3].textContent && divCells[6].textContent) && divCells[0].textContent === mark) {
+      alert(`${name} Wins!`); 
+    } else if (divCells[1].textContent === (divCells[4].textContent && divCells[7].textContent) && divCells[1].textContent === mark) {
+      alert(`${name} Wins!`); 
+    } else if (divCells[2].textContent === (divCells[5].textContent && divCells[8].textContent) && divCells[2].textContent === mark) {
+      alert(`${name} Wins!`); 
     }
 
     //diagonal wins 
-    if (divCells[0].textContent === (divCells[4].textContent && divCells[8].textContent) && divCells[0].textContent === 'X') {
-      alert('You Win!'); 
-    } else if (divCells[2].textContent === (divCells[4].textContent && divCells[6].textContent) && divCells[2].textContent === 'X') {
-      alert('You Win!'); 
+    if (divCells[0].textContent === (divCells[4].textContent && divCells[8].textContent) && divCells[0].textContent === mark) {
+      alert(`${name} Wins!`); 
+    } else if (divCells[2].textContent === (divCells[4].textContent && divCells[6].textContent) && divCells[2].textContent === mark) {
+      alert(`${name} Wins!`); 
     }
-
   }
 
   const addMark = () => { 
@@ -58,12 +57,23 @@ const Player = (name) => {
           divCells[i].classList.add('cells'); 
           divCells[i].textContent += 'X'; 
         }
+        //check if game is won
         _winGame(); 
       });
     }
   }
 
-  return { getName, addMark }; 
+  return { addMark }; 
 }
 
-const playerOne = Player().addMark();
+const btnNewGame = document.querySelector('.btn-new-game'); 
+
+btnNewGame.addEventListener('click', () => {
+  const gameFlow = (() => {
+    //create players
+    const playerOne = Player(); 
+    const playerTwo = Player(); 
+
+
+  })(); 
+}); 

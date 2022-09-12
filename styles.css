@@ -9,11 +9,17 @@ html {
 
 body {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: black;
   height: 100vh;
   margin: 0;
+}
+
+button {
+  color: black;
+  margin: 1rem;
 }
 
 .game-board {
