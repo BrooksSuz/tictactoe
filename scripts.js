@@ -11,7 +11,7 @@ const gameFlow = (function() {
   const _checkPlayerOneWin = () => {
     const win = 'Player One Wins!'; 
     if (divCells[0].textContent === 'X' && divCells[1].textContent === 'X' && divCells[2].textContent === 'X') {
-      alert('Player One Wins!'); 
+      alert(win); 
     } else if (divCells[3].textContent === 'X' && divCells[4].textContent === 'X' && divCells[5].textContent === 'X') {
       alert(win); 
     } else if (divCells[6].textContent === 'X' && divCells[7].textContent === 'X' && divCells[8].textContent === 'X') {
@@ -64,14 +64,12 @@ const gameFlow = (function() {
         }
 
         if (playerOne.turn === true) {
-          gameFunctions.gameBoard.playerOneArr.push(i); 
           playerOne.turn = false; 
         } else if (playerOne.turn === false) {
           playerOne.turn = true; 
         }
         
         if (playerTwo.turn === true) {
-          gameFunctions.gameBoard.playerTwoArr.push(i); 
           playerTwo.turn = false; 
         } else if (playerTwo.turn === false) {
           playerTwo.turn = true; 
@@ -82,5 +80,16 @@ const gameFlow = (function() {
 
   return { playGame }; 
 })(); 
+
+document.querySelector('.btn-new-game').addEventListener('click', () => {
+  const divCells = document.querySelectorAll('div[class^=cell]');
+  divCells.forEach(cell => {
+    cell.classList.remove('cells'); 
+    cell.textContent = ''; 
+    playerOne.turn = true; 
+    playerTwo.turn = false; 
+  }); 
+})
+
 
 gameFlow.playGame();
